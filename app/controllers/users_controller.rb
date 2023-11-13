@@ -19,11 +19,14 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
+    if @user.role == 1
+      @administrator = Administrator.new(administrator_params)
+      @administrator.user = @user
+    end
     if @user.role == 3
       @client = Client.new(user_params.except(:role))
       @user = @client.build_user(user_params.slice(:name, :cpf, :email, :state, :cep, :street, :number))
     end
-
    if @user.save
       if @user.is_a?(Client)
         render json: @user, status: :created, location: @user, notice: 'Client created successfully.'
@@ -59,5 +62,9 @@ class UsersController < ApplicationController
   # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(:name, :cpf, :email, :role, :state, :cep, :street, :number)
+  end
+  def administrator_params
+    params.require(:user).permit(:name, :cpf, :email, :state, :cep, :street, :number).merge(cnpj:"98765432100001")
+    # Adicione outros atributos específicos do administrador conforme necessário
   end
 end
