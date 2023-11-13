@@ -24,7 +24,7 @@ class User < ApplicationRecord
 
   validates :cep, format: { with: /\A\d+\z/, message: 'deve conter apenas algarismos' }
 
-  validates :password, presence: true, length: { minimum: 6, message: 'A senha deve conter pelo menos 6 digitos'}
+  validates :password, presence: true, length: { minimum: 6, message: 'A senha deve conter pelo menos 6 digitos' }
 
   validate :password_complexity
 

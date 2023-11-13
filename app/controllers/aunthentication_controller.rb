@@ -9,7 +9,7 @@ class AunthenticationController < ApplicationController
       jwt_token = generate_jwt(authenticated_user)
       render json: { token: jwt_token }
     else
-      render json: { message: "Email ou senha incorretas" }, status: :unauthorized
+      render json: { message: 'Email ou senha incorretas' }, status: :unauthorized
     end
   end
 

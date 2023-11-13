@@ -2,7 +2,7 @@
 
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show update destroy]
-
+  before_action :authorize_admin, only: [:update_role]
   # GET /users
   def index
     @users = User.all
@@ -22,6 +22,10 @@ class UsersController < ApplicationController
     if @user.role == 1
       @administrator = Administrator.new(administrator_params)
       @administrator.user = @user
+    end
+    if @user.role == 2
+      @employee = Employee.new(employee_params)
+      @employee.user = @user
     end
     if @user.role == 3
       @client = Client.new(user_params.except(:role))
@@ -52,19 +56,40 @@ class UsersController < ApplicationController
     @user.destroy!
   end
 
+
+  def update_role
+    if @user.update(user_params_for_role_update)
+      render json: @user, status: :ok
+    else
+      render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(:name, :cpf, :email, :role, :state, :cep, :street, :number)
   end
   def administrator_params
     params.require(:user).permit(:name, :cpf, :email, :state, :cep, :street, :number).merge(cnpj:"98765432100001")
-    # Adicione outros atributos específicos do administrador conforme necessário
+  end
+
+  def employee_params
+    params.require(:user).permit(:name, :cpf, :email, :state, :cep, :street, :number).merge(ctps:"", salary_base:0.00, hours:0, commission_percent:0.00)
+  end
+  
+  def authorize_admin
+    unless current_user&.admin?
+      render json: { error: 'Unauthorized' }, status: :unauthorized
+    end
+  end
+
+
+  def user_params_for_role_update
+    params.require(:user).permit(:role)
   end
 end
