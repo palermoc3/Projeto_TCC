@@ -2,6 +2,8 @@
 
 one:
   cnpj: MyString
+  user: one
 
 two:
   cnpj: MyString
+  user: two

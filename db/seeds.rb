@@ -26,14 +26,12 @@ Administrator_params = {
   password_confirmation: 'Admin@123'
 }.freeze
 
-User.create(Administrator_params)
-
 # Criar um usuário com role 2 (Employee)
-client_params = {
+employee_params = {
   name: 'Employee User',
   cpf: '16489301214',
   email: 'Employee@example.com',
-  role: 2,  # Role 2 representa um Employee
+  role: 2, # Role 2 representa um Employee
   state: 'RJ',
   cep: '20000000',
   street: 'Rua',
@@ -42,10 +40,10 @@ client_params = {
   password_confirmation: 'Employee@123'
 }
 
-User.create(client_params)
+User.create(employee_params)
 
 # Criar um usuário com role 3 (Client)
-client_params = {
+{
   name: 'Admin User',
   cpf: '16489301744',
   email: 'client@example.com',
@@ -57,5 +55,3 @@ client_params = {
   password: 'client@123',
   password_confirmation: 'client@123'
 }
-
-User.create(client_params)

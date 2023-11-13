@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  has_one :employee
+  has_one :administrator
   has_secure_password
   before_validation :set_default_role
 
