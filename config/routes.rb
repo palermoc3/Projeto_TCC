@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :clients
   post 'aunthentication/login'
   post 'aunthentication/sign_up'
   resources :users

@@ -19,10 +19,19 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    if @user.save
-      render json: @user, status: :created, location: @user
+    if @user.role == 3
+      @client = Client.new(user_params.except(:role))
+      @user = @client.build_user(user_params.slice(:name, :cpf, :email, :state, :cep, :street, :number))
+    end
+
+   if @user.save
+      if @user.is_a?(Client)
+        render json: @user, status: :created, location: @user, notice: 'Client created successfully.'
+      else
+        render json: @user, status: :created, location: @user, notice: 'User was successfully created.'
+      end
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
