@@ -13,7 +13,7 @@ class EmployeesController < ApplicationController
 
   # GET /employees/1
   def show
-    render json: @employee, serializer: EmployeeSerializer
+    render json: @employee
   end
 
   # POST /employees

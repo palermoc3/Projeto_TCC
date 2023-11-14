@@ -1,14 +1,15 @@
-# frozen_string_literal: true
-
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :name, :cpf, :email, :state, :cep, :street, :number
   attribute :role_description
-
-  # Adicionar informações do Employee se estiver associado
+  attribute :cellphones_info, if: -> { object.cellphones.any? }
+  # Adicionar informações das generalizações se estiver associado
   attribute :employee_info, if: -> { object.employee.present? }
-
-  # Adicionar informações do Administrator se estiver associado
   attribute :administrator_info, if: -> { object.administrator.present? }
+  def administrator_info
+    {
+      cnpj: object.administrator.cnpj
+    }
+  end
 
   def employee_info
     {
@@ -19,10 +20,15 @@ class UserSerializer < ActiveModel::Serializer
     }
   end
 
-  def administrator_info
-    {
-      cnpj: object.administrator.cnpj
-    }
+  def cellphones_info
+    object.cellphones.map do |cellphone|
+      {
+        id: cellphone.id,
+        kind: cellphone.kind ? 'Celular' : 'Residencial',
+        number: cellphone.number
+        # Adicione outros atributos que deseja incluir
+      }
+    end
   end
 
   def role_description

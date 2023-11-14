@@ -3,6 +3,7 @@
 class User < ApplicationRecord
   has_one :employee
   has_one :administrator
+  has_many :cellphones
   has_secure_password
   before_validation :set_default_role
 
