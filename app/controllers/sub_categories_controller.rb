@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class SubCategoriesController < ApplicationController
-  before_action :set_sub_category, only: %i[ show update destroy ]
+  before_action :set_sub_category, only: %i[show update destroy]
 
   # GET /sub_categories
   def index
@@ -39,13 +41,14 @@ class SubCategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_sub_category
-      @sub_category = SubCategory.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def sub_category_params
-      params.require(:sub_category).permit(:name, :quantity, :Category_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_sub_category
+    @sub_category = SubCategory.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def sub_category_params
+    params.require(:sub_category).permit(:name, :Category_id)
+  end
 end

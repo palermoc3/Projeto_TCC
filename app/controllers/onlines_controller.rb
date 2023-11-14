@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class OnlinesController < ApplicationController
-  before_action :set_online, only: %i[ show update destroy ]
+  before_action :set_online, only: %i[show update destroy]
 
   # GET /onlines
   def index
@@ -39,13 +41,14 @@ class OnlinesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_online
-      @online = Online.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def online_params
-      params.require(:online).permit(:packSize, :packPrice, :receive, :purchase_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_online
+    @online = Online.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def online_params
+    params.require(:online).permit(:packSize, :packPrice, :receive, :purchase_id)
+  end
 end

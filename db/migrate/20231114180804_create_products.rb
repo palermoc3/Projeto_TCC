@@ -10,7 +10,7 @@ class CreateProducts < ActiveRecord::Migration[7.1]
       t.float :depth
       t.integer :quantity
       t.text :description
-      t.references :subcategory, null: false, foreign_key: true
+      t.references :sub_category, null: false, foreign_key: true
 
       t.timestamps
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateOnlines < ActiveRecord::Migration[7.1]
   def change
     create_table :onlines do |t|

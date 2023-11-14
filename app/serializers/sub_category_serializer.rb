@@ -1,4 +1,6 @@
+# frozen_string_literal: true
+
 class SubCategorySerializer < ActiveModel::Serializer
   attributes :id, :name, :quantity
-  has_one :Category
+  belongs_to :category, serializer: CategorySerializer
 end

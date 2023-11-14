@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CellphonesController < ApplicationController
-  before_action :set_cellphone, only: %i[ show update destroy ]
+  before_action :set_cellphone, only: %i[show update destroy]
 
   # GET /cellphones
   def index
@@ -39,13 +41,14 @@ class CellphonesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cellphone
-      @cellphone = Cellphone.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def cellphone_params
-      params.require(:cellphone).permit(:number, :kind, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cellphone
+    @cellphone = Cellphone.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def cellphone_params
+    params.require(:cellphone).permit(:number, :kind, :user_id)
+  end
 end

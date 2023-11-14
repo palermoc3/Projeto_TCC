@@ -31,7 +31,7 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6, message: 'A senha deve conter pelo menos 6 digitos' }
 
   validate :password_complexity
-  
+
   private
 
   def password_complexity

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_14_171909) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_14_180804) do
   create_table "abouts", force: :cascade do |t|
     t.text "about_text"
     t.integer "store_id", null: false
@@ -124,10 +124,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_14_171909) do
     t.float "depth"
     t.integer "quantity"
     t.text "description"
-    t.integer "subcategory_id", null: false
+    t.integer "sub_category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["subcategory_id"], name: "index_products_on_subcategory_id"
+    t.index ["sub_category_id"], name: "index_products_on_sub_category_id"
   end
 
   create_table "purchases", force: :cascade do |t|
@@ -152,10 +152,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_14_171909) do
   create_table "sub_categories", force: :cascade do |t|
     t.string "name"
     t.integer "quantity"
-    t.integer "Category_id", null: false
+    t.integer "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["Category_id"], name: "index_sub_categories_on_Category_id"
+    t.index ["category_id"], name: "index_sub_categories_on_category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -182,8 +182,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_14_171909) do
   add_foreign_key "item_purchases", "purchases"
   add_foreign_key "onlines", "purchases"
   add_foreign_key "payrolls", "employees"
-  add_foreign_key "products", "subcategories"
+  add_foreign_key "products", "sub_categories"
   add_foreign_key "purchases", "users"
   add_foreign_key "stores", "administrators"
-  add_foreign_key "sub_categories", "Categories"
+  add_foreign_key "sub_categories", "categories"
 end

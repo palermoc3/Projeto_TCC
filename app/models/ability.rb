@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Ability
   include CanCan::Ability
 
@@ -5,7 +7,7 @@ class Ability
     user ||= User.new # convidado (não logado)
 
     if user.present? && user.role == 1
-            can :manage, :all 
+      can :manage, :all
     else
       # Habilidades para usuários padrão (se necessário)
     end

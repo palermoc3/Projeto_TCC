@@ -1,25 +1,23 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::API
-    def current_user
-        if decode.present?
-            user = User.find(decode["user_id"])
-        else
-          return nil
-        end
-      end
+  def current_user
+    return nil unless decode.present?
 
-    def decode
-        if auth_token.present?
-            decoded_array = JsonWebToken.decode(auth_token) 
-            return decoded_array[0]
-        else
-            return nil
-        end
+    User.find(decode['user_id'])
+  end
 
-    end
+  def decode
+    return nil unless auth_token.present?
 
-    def auth_token
-        token = request.headers["Authorization"]
-        return nil if token.nil?
-        token.split(" ").last
-    end
+    decoded_array = JsonWebToken.decode(auth_token)
+    decoded_array[0]
+  end
+
+  def auth_token
+    token = request.headers['Authorization']
+    return nil if token.nil?
+
+    token.split(' ').last
+  end
 end

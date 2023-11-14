@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Cellphone < ApplicationRecord
   belongs_to :user
 
@@ -9,5 +11,4 @@ class Cellphone < ApplicationRecord
   def tipo_true?
     kind == true
   end
-
 end

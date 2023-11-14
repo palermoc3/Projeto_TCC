@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 class AunthenticationController < ApplicationController
   def login
     @user = User.find_by(email: params[:user][:email])
     if @user.authenticate(params[:user][:password])
-      #Gerar um token autenticavel
-      token = JsonWebToken.encode({user_id:@user.id})
-      render json: {token: token}
+      # Gerar um token autenticavel
+      token = JsonWebToken.encode({ user_id: @user.id })
+      render json: { token: token }
     else
-      render json: {error:"Não foi possivel fazer o login"}, status: 401
+      render json: { error: 'Não foi possivel fazer o login' }, status: 401
     end
   end
 
@@ -21,21 +23,20 @@ class AunthenticationController < ApplicationController
 
   def confirm
     if params[:validation_token].present?
-      @user=User.find_by(validation_token: params[:validation_token])
+      @user = User.find_by(validation_token: params[:validation_token])
       if @user.present?
         if @user.validate_user?(params[:validation_token])
-          render json:@user
+          render json: @user
         else
-          render json:{error:"Esse token ja expirou"},status:422
+          render json: { error: 'Esse token ja expirou' }, status: 422
         end
       else
-        render json:{error: "usuario não existe"},status: 404
+        render json: { error: 'usuario não existe' }, status: 404
       end
     else
-      render json: {error: "Operação inválida"}, status: 400
+      render json: { error: 'Operação inválida' }, status: 400
     end
   end
-
 
   # Only allow a list of trusted parameters through.
   def user_params

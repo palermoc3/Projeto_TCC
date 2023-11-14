@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CellphoneSerializer < ActiveModel::Serializer
   attributes :id, :number
   attribute :cellphone_type
