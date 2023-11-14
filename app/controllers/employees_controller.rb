@@ -2,6 +2,7 @@
 
 class EmployeesController < ApplicationController
   before_action :set_employee, only: %i[show update destroy]
+  load_and_authorize_resource
 
   # GET /employees
   def index

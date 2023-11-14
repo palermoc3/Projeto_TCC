@@ -13,45 +13,55 @@
 # db/seeds.rb
 
 # Criar um usuário com role 1 (Administrator)
-Administrator_params = {
-  name: 'Admin User',
+# Criação do usuário
+administrator = User.create!(
+  name: 'Nome do Usuário',
   cpf: '12345678901',
   email: 'admin@example.com',
-  role: 1, # Role 1 representa um administrator
   state: 'RJ',
   cep: '20000000',
   street: 'Rua',
   number: 1,
   password: 'Admin@123',
   password_confirmation: 'Admin@123'
-}.freeze
+)
 
-# Criar um usuário com role 2 (Employee)
-employee_params = {
+# Criação do administrador associado ao usuário
+Administrator.create!(
+  user: administrator,
+  cnpj: '12345678901234'
+)
+
+employee = User.create!(
   name: 'Employee User',
   cpf: '16489301214',
-  email: 'Employee@example.com',
-  role: 2, # Role 2 representa um Employee
+  email: 'employee@example.com',
   state: 'RJ',
   cep: '20000000',
   street: 'Rua',
   number: 1,
   password: 'Employee@123',
   password_confirmation: 'Employee@123'
-}
+)
 
-User.create(employee_params)
+# Criar um empregado associado ao usuário
+Employee.create!(
+  user: employee,
+  ctps: '1234567890',
+  salary_base: 6000.0,
+  hours: 35,
+  commission_percent: 7.5
+)
 
 # Criar um usuário com role 3 (Client)
-{
+User.create!(
   name: 'Admin User',
   cpf: '16489301744',
   email: 'client@example.com',
-  role: 3,  # Role 3 representa um Client
   state: 'RJ',
   cep: '20000000',
   street: 'Rua',
   number: 1,
-  password: 'client@123',
-  password_confirmation: 'client@123'
-}
+  password: 'Client@123',
+  password_confirmation: 'Client@123'
+)

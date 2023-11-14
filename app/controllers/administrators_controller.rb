@@ -2,6 +2,7 @@
 
 class AdministratorsController < ApplicationController
   before_action :set_administrator, only: %i[show update destroy]
+  load_and_authorize_resource
 
   # GET /administrators
   def index

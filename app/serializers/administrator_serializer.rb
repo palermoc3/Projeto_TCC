@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class EmployeeSerializer < ActiveModel::Serializer
+class AdministratorSerializer < ActiveModel::Serializer
   # Inclui as informações do usuário
   belongs_to :user, serializer: UserSerializer
 
