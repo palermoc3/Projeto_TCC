@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :products
   resources :sub_categories
   resources :categories
-  resources :onlines
   resources :item_purchases
   resources :purchases
   resources :abouts

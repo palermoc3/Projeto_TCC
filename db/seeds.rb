@@ -92,20 +92,20 @@ SubCategory.create!(name: 'toys neutral', category_id: 2)
 
 # Criar de Produtos
 Product.create!(
-  name: "Carrinho de Controle Remoto",
+  name: 'Carrinho de Controle Remoto',
   weight: 0.5,
   width: 1.2,
   length: 0.6,
   depth: 0.2,
-  quantity:20,
+  quantity: 20,
   valueSell: 49.99,
   valueBuy: 29.99,
-  description: "Carrinho de brinquedo controlado remotamente.",
-  sub_category_id: toys.id,
+  description: 'Carrinho de brinquedo controlado remotamente.',
+  sub_category_id: toys.id
 )
 
 Product.create!(
-  name: "uno",
+  name: 'uno',
   weight: 0.5,
   width: 1.2,
   length: 0.6,
@@ -113,12 +113,12 @@ Product.create!(
   quantity: 20,
   valueSell: 500.99,
   valueBuy: 29.99,
-  description: "Carro economico.",
-  sub_category_id: cars.id,
+  description: 'Carro economico.',
+  sub_category_id: cars.id
 )
 
 Product.create!(
-  name: "Civic",
+  name: 'Civic',
   weight: 0.5,
   width: 1.2,
   length: 0.6,
@@ -126,6 +126,10 @@ Product.create!(
   quantity: 20,
   valueSell: 1000.20,
   valueBuy: 29.99,
-  description: "Carro um pouco menos economico.",
-  sub_category_id: cars.id,
+  description: 'Carro um pouco menos economico.',
+  sub_category_id: cars.id
 )
+
+ItemPurchase.create!(product_id: 1, purchase_id: 2)
+
+ItemPurchase.create!(product_id: 2, purchase_id: 2, quantity: 2)

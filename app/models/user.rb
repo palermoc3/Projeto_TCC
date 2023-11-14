@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :purchases
   has_secure_password
   before_validation :set_default_role
+  after_create :create_initial_purchase
 
   validates :name, :cpf, :email, :cep, :street, :number, :state, :password, :password_confirmation,
             presence: { message: 'Não pode ser vazio' }
@@ -45,5 +46,9 @@ class User < ApplicationRecord
 
   def set_default_role
     self.role ||= 3
+  end
+
+  def create_initial_purchase
+    purchases.create(paid: false, price: 0.00, user_id: id)
   end
 end

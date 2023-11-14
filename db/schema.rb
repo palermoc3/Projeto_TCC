@@ -92,16 +92,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_14_180804) do
     t.index ["purchase_id"], name: "index_item_purchases_on_purchase_id"
   end
 
-  create_table "onlines", force: :cascade do |t|
-    t.float "packSize"
-    t.float "packPrice"
-    t.boolean "receive"
-    t.integer "purchase_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["purchase_id"], name: "index_onlines_on_purchase_id"
-  end
-
   create_table "payrolls", force: :cascade do |t|
     t.date "date_of_payroll"
     t.float "commission"
@@ -180,7 +170,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_14_180804) do
   add_foreign_key "employees", "users"
   add_foreign_key "item_purchases", "products"
   add_foreign_key "item_purchases", "purchases"
-  add_foreign_key "onlines", "purchases"
   add_foreign_key "payrolls", "employees"
   add_foreign_key "products", "sub_categories"
   add_foreign_key "purchases", "users"
