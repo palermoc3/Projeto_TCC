@@ -6,4 +6,9 @@ class Purchase < ApplicationRecord
     self.price = item_purchases.sum { |item| item.quantity * item.product.valueBuy }
     save
   end
+
+  def update_pack_size
+    self.packSize = item_purchases.sum { |item| item.product.width * item.product.length * item.product.depth }
+    save
+  end
 end

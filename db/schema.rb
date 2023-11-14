@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_14_180804) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_14_215928) do
   create_table "abouts", force: :cascade do |t|
     t.text "about_text"
     t.integer "store_id", null: false
@@ -126,6 +126,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_14_180804) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "packSize"
+    t.float "packPrice"
+    t.boolean "receive"
     t.index ["user_id"], name: "index_purchases_on_user_id"
   end
 
