@@ -6,27 +6,25 @@ class UsersController < ApplicationController
   load_and_authorize_resource
   # GET /users
   def index
-    @users = User.all
 
-    render json: @users
+    @users = User.all
+    render json: { users: @users }
   end
 
   # GET /users/1
   def show
+    puts(user.role)
     render json: @user
   end
 
   # POST /users
   def create
     @user = User.new(user_params)
-    puts('oi')
-    binding.pry
     if @user.role == 1
       @administrator = Administrator.new(administrator_params)
       @administrator.user = @user
     end
     if @user.role == 2
-      puts('chegou')
       @employee = Employee.new(employee_params)
       @employee.user = @user
 
