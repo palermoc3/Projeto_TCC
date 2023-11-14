@@ -2,6 +2,7 @@
 
 class Employee < ApplicationRecord
   belongs_to :user
+  has_many :payrolls
   after_create :update_user_role
   after_update :update_user_role
 

@@ -2,7 +2,7 @@
 
 class Administrator < ApplicationRecord
   belongs_to :user
-
+  has_one :store
   after_create :update_user_role
   after_update :update_user_role
 

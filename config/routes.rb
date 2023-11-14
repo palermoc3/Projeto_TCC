@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :onlines
+  resources :item_purchases
+  resources :products
+  resources :sub_categories
+  resources :categories
+  resources :purchases
+  resources :abouts
+  resources :stores
+  resources :payrolls
   resources :cellphones
   resources :administrators
   resources :employees

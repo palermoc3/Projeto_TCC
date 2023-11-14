@@ -27,10 +27,23 @@ Cellphone.create!(
 )
 
 # Criação do administrador associado ao usuário
-Administrator.create!(
+store = Administrator.create!(
   user: administrator,
   cnpj: '12345678901234'
 )
+ 
+about = Store.create!(
+  administrator: store,
+  kind: 1,
+  payroll_day: 5,
+  theme: 1,
+)
+
+About.create!(
+  store: about,
+  about_text: 'palavras cruzadas são o maximo'
+)
+
 
 employee = User.create!(
   name: 'Employee User',
