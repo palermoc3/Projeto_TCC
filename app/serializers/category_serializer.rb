@@ -1,3 +1,4 @@
 class CategorySerializer < ActiveModel::Serializer
-  attributes :id, :name, :quantity
+  attributes :id, :quantity, :name
+
 end
