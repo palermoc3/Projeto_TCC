@@ -2,7 +2,7 @@
 
 class CellphonesController < ApplicationController
   before_action :set_cellphone, only: %i[show update destroy]
-
+  load_and_authorize_resource
   # GET /cellphones
   def index
     @cellphones = Cellphone.all
@@ -49,6 +49,7 @@ class CellphonesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def cellphone_params
-    params.require(:cellphone).permit(:number, :kind, :user_id)
+    user_id = current_user.id
+    params.require(:cellphone).permit(:number, :kind).merge(user_id: user_id)
   end
 end

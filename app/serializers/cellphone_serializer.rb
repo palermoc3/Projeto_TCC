@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class CellphoneSerializer < ActiveModel::Serializer
-  attributes :id, :number
-  attribute :cellphone_type
-  has_one :user
+  attributes :id, :number, :cellphone_type
 
   def cellphone_type
     if object.kind?
