@@ -41,6 +41,12 @@ about = Store.create!(
 
 About.create!(
   store: about,
+  title: "sudoku",
+#  photo: {
+#    data: "base64_encoded_image_data",
+#    filename: "nome_do_arquivo.jpg",
+#    content_type: "image/jpeg"
+#}
   about_text: 'palavras cruzadas são o maximo'
 )
 
