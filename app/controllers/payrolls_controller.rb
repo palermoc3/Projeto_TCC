@@ -2,6 +2,7 @@
 
 class PayrollsController < ApplicationController
   before_action :set_payroll, only: %i[show update destroy]
+  load_and_authorize_resource
 
   # GET /payrolls
   def index

@@ -2,6 +2,7 @@
 
 class AboutsController < ApplicationController
   before_action :set_about, only: %i[show update destroy]
+  load_and_authorize_resource
 
   # GET /abouts
   def index
@@ -49,6 +50,6 @@ class AboutsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def about_params
-    params.require(:about).permit(:about_text, :store_id)
+    params.require(:about).permit(:about_text, :store_id, :title)
   end
 end

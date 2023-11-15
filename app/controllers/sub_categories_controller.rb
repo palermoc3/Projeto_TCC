@@ -2,6 +2,7 @@
 
 class SubCategoriesController < ApplicationController
   before_action :set_sub_category, only: %i[show update destroy]
+  load_and_authorize_resource
 
   # GET /sub_categories
   def index

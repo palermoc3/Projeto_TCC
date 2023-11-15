@@ -2,6 +2,7 @@
 
 class StoresController < ApplicationController
   before_action :set_store, only: %i[show update destroy]
+  load_and_authorize_resource
 
   # GET /stores
   def index

@@ -2,6 +2,7 @@
 
 class PurchasesController < ApplicationController
   before_action :set_purchase, only: %i[show update destroy]
+  load_and_authorize_resource
 
   # GET /purchases
   def index
