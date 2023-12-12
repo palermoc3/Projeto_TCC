@@ -50,6 +50,6 @@ class AboutsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def about_params
-    params.require(:about).permit(:about_text, :store_id, :title)
+    params.require(:about).permit(:about_text, :store_id, :title, :image)
   end
 end

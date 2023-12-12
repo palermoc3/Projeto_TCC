@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_231_115_160_432) do
+ActiveRecord::Schema[7.1].define(version: 20_231_124_172_743) do
   create_table 'abouts', force: :cascade do |t|
     t.text 'about_text'
     t.integer 'store_id', null: false
@@ -136,6 +136,15 @@ ActiveRecord::Schema[7.1].define(version: 20_231_115_160_432) do
     t.index ['user_id'], name: 'index_purchases_on_user_id'
   end
 
+  create_table 'reports', force: :cascade do |t|
+    t.integer 'store_id', null: false
+    t.float 'monthly_sales'
+    t.date 'date_report'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['store_id'], name: 'index_reports_on_store_id'
+  end
+
   create_table 'stores', force: :cascade do |t|
     t.integer 'kind'
     t.integer 'theme'
@@ -180,6 +189,7 @@ ActiveRecord::Schema[7.1].define(version: 20_231_115_160_432) do
   add_foreign_key 'payrolls', 'employees'
   add_foreign_key 'products', 'sub_categories'
   add_foreign_key 'purchases', 'users'
+  add_foreign_key 'reports', 'stores'
   add_foreign_key 'stores', 'administrators'
   add_foreign_key 'sub_categories', 'categories'
 end

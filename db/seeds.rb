@@ -39,17 +39,6 @@ about = Store.create!(
   theme: 1
 )
 
-About.create!(
-  store: about,
-  title: 'sudoku',
-  #  photo: {
-  #    data: "base64_encoded_image_data",
-  #    filename: "nome_do_arquivo.jpg",
-  #    content_type: "image/jpeg"
-  # }
-  about_text: 'palavras cruzadas são o maximo'
-)
-
 employee = User.create!(
   name: 'Employee User',
   cpf: '16489301214',
@@ -139,3 +128,14 @@ Product.create!(
 ItemPurchase.create!(product_id: 1, purchase_id: 2)
 
 ItemPurchase.create!(product_id: 2, purchase_id: 2, quantity: 2)
+
+About.create!(
+  store: about,
+  title: 'sudoku',
+  "about_text": 'palavras cruzadas são o maximo',
+  image: {
+    io: StringIO.new(Base64.decode64('base64_encoded_image_data')),
+    filename: 'nome_do_arquivo.jpg',
+    content_type: 'image/jpeg'
+  }
+)

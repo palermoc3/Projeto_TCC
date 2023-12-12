@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  store: one
+  monthly_sales: 1.5
+  date_report: 2023-11-24
+
+two:
+  store: two
+  monthly_sales: 1.5
+  date_report: 2023-11-24

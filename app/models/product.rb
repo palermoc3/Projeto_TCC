@@ -5,6 +5,9 @@ class Product < ApplicationRecord
   has_many :item_purchases
   belongs_to :sub_category
   after_create :increment_sub_category_quantity
+  has_one_attached :photo1
+  has_one_attached :photo2
+  has_one_attached :photo3
 
   validates :name, presence: { message: 'Não pode ser vazio' }
   validates :sub_category, presence: { message: 'Deve ser associado a uma categoria' }
